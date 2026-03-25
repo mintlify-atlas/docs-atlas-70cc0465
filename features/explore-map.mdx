@@ -1,0 +1,87 @@
+---
+title: "Explore Map"
+description: "The interactive D3-powered map of India — discover cultural heritage state by state and region by region."
+---
+
+The **Explore** page is the heart of Virasat. An interactive, D3-rendered map of India lets you navigate all 28 states and 8 union territories, filter by region, and dive into each state's cultural detail panel.
+
+## How the map works
+
+The map is built with D3's `geoMercator` projection and GeoJSON boundary data (`public/india-states.json`). It renders in SVG with smooth pan/zoom and click interactions powered by Framer Motion transitions.
+
+<CardGroup cols={2}>
+  <Card title="Regional filters" icon="filter">
+    Seven tabs filter the map to highlight states by geographic region — click any region to focus the view.
+  </Card>
+  <Card title="State detail panel" icon="sidebar-right">
+    Clicking a state opens a full split-screen panel showing monuments, art forms, festivals, museums, and more.
+  </Card>
+  <Card title="3D mudra showcase" icon="cube">
+    The top of the Explore page features 6 curated 3D Hasta Mudra models you can rotate and zoom.
+  </Card>
+  <Card title="URL deep-links" icon="link">
+    Link directly to any state with `/explore/:stateName` — e.g. `/explore/Rajasthan`.
+  </Card>
+</CardGroup>
+
+## Regional navigation
+
+The map includes 7 region filter tabs that highlight the corresponding states:
+
+| Region | States |
+|--------|--------|
+| NORTH | Jammu & Kashmir, Himachal Pradesh, Punjab, Uttarakhand, Haryana, Delhi, Uttar Pradesh, Chandigarh, Ladakh |
+| SOUTH | Tamil Nadu, Kerala, Karnataka, Andhra Pradesh, Telangana, Puducherry, Andaman & Nicobar, Lakshadweep |
+| EAST | West Bengal, Odisha, Bihar, Jharkhand |
+| WEST | Rajasthan, Gujarat, Maharashtra, Goa, Dadra & Nagar Haveli, Daman & Diu |
+| CENTRAL | Madhya Pradesh, Chhattisgarh |
+| NORTH EAST | Assam, Meghalaya, Manipur, Nagaland, Arunachal Pradesh, Mizoram, Tripura, Sikkim |
+| UNION TERRITORIES | A UI filter grouping for all union territories across regions |
+
+## Opening a state
+
+Click any state shape on the map to open its cultural detail panel. The map transitions to full-screen mode and a panel slides in from the right (on desktop) or up from the bottom (on mobile).
+
+The state detail panel includes:
+- **Monuments** — historical sites, temples, forts, and architectural wonders
+- **Art Forms** — paintings, performing arts, and handicrafts
+- **Fairs & Festivals** — annual cultural celebrations
+- **Museums** — state museums and galleries
+
+<Tip>
+  You can deep-link directly to any state. For example, visit `/explore/Rajasthan` to immediately open Rajasthan's cultural panel. This URL is shareable and bookmarkable.
+</Tip>
+
+## Map interactions
+
+- **Click a state** → opens the state detail panel
+- **Click a region tab** → highlights states in that region
+- **Eye icon** → toggles high-contrast color mode for accessibility
+- **Scroll down on the page** → the map card animates from a rounded card to full-screen using Framer Motion scroll transforms
+- **Close button / back** → returns to the full map view
+
+<Note>
+  The map uses a fluid expansion animation driven by Framer Motion's `useScroll` and `useTransform` hooks. As you scroll past the hero section, the map expands from a rounded, padded card to a borderless full-screen view.
+</Note>
+
+## 3D mudra showcase
+
+At the top of the Explore page, before the map, is an "Ancient Hasta Mudras" showcase card showing 6 curated 3D mudra models in a horizontally scrollable row:
+
+- **Alapadma** (single-hand) — fully bloomed lotus
+- **Anjali** (two-hand) — salutation/namaste
+- **Pataka** (single-hand) — flag gesture
+- **Garuda** (two-hand) — eagle, Vishnu's vehicle
+- **Mayura** (single-hand) — peacock
+- **Chakra** (two-hand) — disc/wheel
+
+Each model is interactive — drag to rotate, scroll to zoom.
+
+<CardGroup cols={2}>
+  <Card title="Navigating the map" icon="compass" href="/guides/navigating-the-map">
+    Step-by-step guide to all map interactions
+  </Card>
+  <Card title="Exploring states" icon="map-pin" href="/guides/exploring-states">
+    What's inside each state's cultural detail panel
+  </Card>
+</CardGroup>

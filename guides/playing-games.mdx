@@ -1,0 +1,130 @@
+---
+title: "Playing the games"
+description: "How to play all 7 educational mini-games in Virasat's game arcade."
+---
+
+Virasat includes 7 educational mini-games accessible at `/games`. Each game tests a different aspect of knowledge about Indian states, culture, and heritage.
+
+When you first open `/games`, you are prompted to **enter your name**. This name is used on the downloadable participation certificate you receive after completing a game. After submitting your name, the full game arcade is shown — click any game card to begin.
+
+<Tip>
+On mobile, all drag-and-drop games support a **tap-to-select** alternative. Tap a state chip or item to select it (it highlights in amber), then tap the target zone to place it. No dragging required.
+</Tip>
+
+## Games
+
+<AccordionGroup>
+  <Accordion title="State on Map — drag-and-drop map game">
+    **Difficulty:** Easy
+
+    Place Indian state names onto their correct locations on a D3-rendered India map.
+
+    **How to play:**
+
+    1. 10 random states are selected from the full list at the start of each round.
+    2. State name chips appear in a row below the map. Drag a chip from the bottom strip and drop it onto the correct state shape on the map.
+    3. On mobile, tap a chip to select it, then tap the correct state shape on the map.
+    4. A correct drop turns the chip **green**; a wrong drop turns it **red**. Feedback is shown immediately below the map.
+    5. Placed chips (correct or incorrect) are removed from the strip. Continue until all 10 states are placed.
+    6. Your final score is shown as **X / 10 correct**.
+  </Accordion>
+
+  <Accordion title="Heritage Site Builder — jigsaw puzzle">
+    **Difficulty:** Medium
+
+    Reassemble a scrambled monument image to reveal the complete heritage site.
+
+    **How to play:**
+
+    1. A random monument image (from states with monument images in the data) is selected and split into a **2×2 grid of 4 pieces**. The pieces are shuffled.
+    2. Click one piece to select it (it highlights with an amber border). Then click a second piece to swap them.
+    3. Repeat until the image is restored to its correct order (pieces 0, 1, 2, 3 from top-left to bottom-right).
+    4. When the puzzle is solved, the complete image is revealed along with the **monument name** and **state**.
+    5. Score is recorded as **1 / 1** on completion.
+  </Accordion>
+
+  <Accordion title="Guess the Dance Form — multiple choice">
+    **Difficulty:** Medium
+
+    Identify which Indian state a classical or folk dance form originates from.
+
+    **How to play:**
+
+    1. A dance form name is displayed — with an image when one is available.
+    2. Choose which of the **4 listed states** the dance originates from.
+    3. After selecting, immediate feedback is shown: your choice turns green (correct) or red (wrong), and the correct state is highlighted.
+    4. Play continues for **10 rounds** drawn randomly from the performing arts data.
+    5. Your final score is shown as **X / 10 correct**.
+  </Accordion>
+
+  <Accordion title="Historical Timeline — ordering game">
+    **Difficulty:** Hard
+
+    Arrange Indian historical periods in the correct chronological order from oldest to most recent.
+
+    **How to play:**
+
+    1. All historical periods from `timeline.json` are shuffled into a random order.
+    2. Each period is displayed as a row with colored dot on a vertical timeline spine and **↑ / ↓ arrow buttons**.
+    3. Click the **↑** or **↓** buttons to move a period up or down in your ordering.
+    4. When you are satisfied with the order, click **Check order**.
+    5. Each period placed in the correct chronological position scores 1 point.
+    6. Correct entries turn **green**; incorrect entries turn **red**.
+    7. Your final score is shown as **X / [total periods] correct**.
+  </Accordion>
+
+  <Accordion title="State to Region — drag-and-drop classification">
+    **Difficulty:** Medium
+
+    Classify every Indian state into its correct geographic region.
+
+    **How to play:**
+
+    1. All Indian states appear as chips in a pool at the bottom of the screen.
+    2. Six region boxes are shown in a grid: **North**, **South**, **East**, **West**, **Central**, **Northeast**.
+    3. Drag a state chip and drop it onto the correct region box. On mobile, tap a chip to select it, then tap the target region box.
+    4. Placed states appear inside the region box — green if correct, red if wrong.
+    5. A **live progress bar** tracks how many states have been placed out of the total.
+    6. The game ends when all states are placed. Your final score is shown as **X / [total states] correct**.
+  </Accordion>
+
+  <Accordion title="Monument & State — multiple choice">
+    **Difficulty:** Easy
+
+    Match famous heritage sites and monuments to the Indian state they are located in.
+
+    **How to play:**
+
+    1. A monument name is shown — with an image if one is available in the data.
+    2. Choose which of the **4 listed states** the monument belongs to.
+    3. Immediate feedback: your choice turns green (correct) or red (wrong), and the correct answer is highlighted.
+    4. Play continues for **10 rounds** drawn randomly from the monument data.
+    5. Your final score is shown as **X / 10 correct**.
+  </Accordion>
+
+  <Accordion title="Culture Trivia Quiz — multiple choice quiz">
+    **Difficulty:** Hard
+
+    Answer 10 multiple-choice questions drawn from a large bank of Indian culture, art, and heritage questions.
+
+    **How to play:**
+
+    1. 10 questions are selected randomly from the question bank in `src/data/quiz.json`.
+    2. Each question shows a **category label** (e.g. Classical Dance, Monuments, Festivals) and the question text.
+    3. Choose one of the **4 options (A / B / C / D)**. Your choice is highlighted green (correct) or red (wrong), and the correct answer is revealed.
+    4. Click **Next** to advance to the following question.
+    5. After 10 questions, your final score is shown as **X / 10 correct**.
+  </Accordion>
+</AccordionGroup>
+
+## Scores, certificates, and returning to the arcade
+
+At the end of each game, your score is displayed in the format **X / Y correct**. You are then offered the option to generate a **Certificate of Participation**:
+
+1. Confirm or update the name to appear on the certificate
+2. Click to generate — the certificate is drawn on canvas with your name, game title, score, a unique ID, and the date
+3. Click **Download** to save it as a PNG
+
+Previously downloaded certificates are stored in your browser's `localStorage` so you can retrieve them without replaying the game.
+
+Click **← Back to Arcade** to return to the game selection screen.

@@ -1,0 +1,77 @@
+---
+title: "Exploring states"
+description: "Discover the cultural wealth of each Indian state — monuments, art forms, festivals, handicrafts, and museums."
+---
+
+When you select a state on the interactive map, a split-screen detail panel opens alongside the map. This panel is the heart of Virasat's cultural content — it aggregates everything the platform knows about that state into a single scrollable view.
+
+<Note>
+All state content is sourced directly from NCERT curriculum materials. The data covers monuments, performing arts, visual arts, handicrafts, fairs and festivals, and museum records across all 28 states and 8 union territories.
+</Note>
+
+## The state detail panel
+
+On desktop, the state panel occupies the right ~53% of the screen, while the map remains visible on the left and zooms to the selected state's geography. On mobile, the panel slides up from the bottom of the screen and takes up the lower half.
+
+<Tip>
+On mobile, the panel is independently scrollable. Swipe up within the panel to see more content — it does not scroll the rest of the page. The map remains visible at the top of the screen.
+</Tip>
+
+The panel opens with an animated entrance: on desktop it slides in from the right (`x: 100%`), and on mobile it rises from below (`y: 100%`), transitioning smoothly over 600ms.
+
+## Panel header
+
+The panel header shows:
+
+- The **state name** in large serif text
+- The **capital city** as a badge (when available in the data)
+- A **close (×) button** to return to the map
+
+## Hero card
+
+Below the header, a hero card displays:
+
+- The **state name** as a large headline
+- A key **fact** about the state from the NCERT data (e.g. a cultural or geographic highlight)
+- City count badge
+- A **3D monument model** in the background, if a 3D model exists for that state (rendered via `StateModelViewer`)
+
+## Content categories
+
+Each state panel surfaces content across two display tiers:
+
+**Visual Heritage Gallery** — full scrollable article cards for:
+
+| Category | Display label | What it contains |
+|---|---|---|
+| **Monuments** | Monument | Historical sites, temples, forts, and architectural wonders |
+| **Paintings** | Visual Art | Regional painting styles and visual art traditions |
+| **Handicrafts** | Handicraft | Traditional craft traditions, materials, and techniques |
+| **Performing Arts** | Performing Art | Classical and folk dance, music, and theatre forms |
+
+**Compact info badges** — shown as a two-column grid above the gallery:
+
+| Category | What it shows |
+|---|---|
+| **Fairs & Festivals** | Count of festivals + name of the first listed event |
+| **Museums** | Count of museums + "Historical archives & repositories" |
+
+Fairs, festivals, and museums do not appear as full gallery articles — they are summarised in the compact badge row only.
+
+## Visual Heritage Gallery
+
+All monuments, paintings, handicrafts, and performing arts items appear in the **Visual Heritage Gallery** section — a vertically stacked list of article cards. Each card shows:
+
+- A **hero image** (or tasteful fallback if no image is available)
+- A **type badge** (Monument, Visual Art, Handicraft, Performing Art) with a color-coded icon
+- The **item name** as a heading
+- A **description** — truncated to 3 lines by default, expanding to the full text on click
+- A **fullscreen expand** button (appears on hover) that opens a lightbox with the full image and extended detail fields (materials, historical significance)
+
+## 3D monument viewer
+
+For states that have an associated 3D model in the platform's model library, a semi-transparent 3D rendering is displayed in the background of the hero card. The model is interactive — you can rotate it within the hero area.
+
+## Sharing a state
+
+When you navigate to a state, the browser URL updates to `/explore/:stateName` (for example, `/explore/Kerala`). Copy and share this URL to give someone a direct link to that state's cultural panel. See [Navigating the map](/guides/navigating-the-map) for more on deep-linking.

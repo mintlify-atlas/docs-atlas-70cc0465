@@ -1,0 +1,111 @@
+---
+title: "Local development setup"
+description: "Everything you need to run Virasat locally for development or content contributions."
+---
+
+## Requirements
+
+- **Node.js** 18 or higher (Node.js 20 LTS recommended)
+- **npm** 9 or higher (bundled with Node.js 20)
+- **Git**
+
+Verify your versions:
+
+```bash
+node --version   # v20.x.x
+npm --version    # 10.x.x
+```
+
+## Setup
+
+<Steps>
+  <Step title="Clone the repository">
+    ```bash
+    git clone https://github.com/Avadhak47/NCERT virasat
+    cd virasat
+    ```
+  </Step>
+  <Step title="Install dependencies">
+    <CodeGroup>
+      ```bash npm
+      npm install
+      ```
+      ```bash yarn
+      yarn install
+      ```
+      ```bash pnpm
+      pnpm install
+      ```
+    </CodeGroup>
+
+    This installs all production and development dependencies including React 19, Vite 7, Tailwind CSS v4, Framer Motion, D3, and the Sharp image processing library.
+  </Step>
+  <Step title="Start the development server">
+    ```bash
+    npm run dev
+    ```
+
+    Vite starts a local dev server at **http://localhost:5173** with Hot Module Replacement (HMR). Changes to source files and JSON data files are reflected instantly in the browser.
+  </Step>
+</Steps>
+
+## Available scripts
+
+| Script | Command | Description |
+|--------|---------|-------------|
+| Dev server | `npm run dev` | Starts Vite dev server with HMR at localhost:5173 |
+| Production build | `npm run build` | TypeScript compilation (`tsc -b`) followed by Vite production build |
+| Preview build | `npm run preview` | Serves the production build locally for final checks |
+| Lint | `npm run lint` | Runs ESLint 9 with typescript-eslint rules across all source files |
+| Convert images | `npm run convert-images` | Batch-converts images to WebP using the sharp library |
+| Upscale images | `npm run upscale-images` | Upscales low-resolution images using sharp before WebP conversion |
+
+## Environment
+
+No `.env` file is required for basic development. All images and 3D models are served directly from the `public/` directory by Vite. There is no backend, API, or database — the app is fully static.
+
+## Project structure
+
+```
+virasat/
+├── public/                     # Static assets served at root path
+│   ├── state-images/           # Art form and monument images by state
+│   ├── state-images-new/       # Reorganized state image set
+│   ├── downloaded_images/      # Scraped/downloaded image cache
+│   ├── time-line-images/       # Timeline period highlight images
+│   ├── models/
+│   │   ├── single-hand/        # Single-hand mudra GLB models
+│   │   └── two-hand/           # Two-hand mudra GLB models
+│   └── india-states.json       # GeoJSON for D3 map rendering
+├── scripts/
+│   ├── convert-to-webp.mjs     # Image conversion script (sharp)
+│   ├── upscale-images.mjs      # Image upscaling script (sharp)
+│   ├── consolidate-states.js   # Utility to merge state data files
+│   └── generate-requirements.cjs  # Generates content_requirements.md
+├── src/
+│   ├── pages/                  # Route-level page components
+│   ├── components/
+│   │   ├── core/               # Reusable UI components (cards, modals, etc.)
+│   │   └── map/                # D3 India map components
+│   ├── data/
+│   │   ├── states.json         # Primary cultural data (states + classical dances)
+│   │   ├── timeline.json       # Historical periods and highlights
+│   │   ├── games.json          # Game metadata
+│   │   ├── glossary.json       # Cultural vocabulary (68 terms)
+│   │   └── quiz.json           # Trivia questions (500+)
+│   ├── hooks/                  # Custom React hooks
+│   ├── utils/
+│   │   ├── imageUrl.ts         # getImageUrl(), hasImage() utilities
+│   │   ├── fallbackImages.ts   # getFallbackImage() fallback system
+│   │   ├── timelineFallbackImages.ts
+│   │   └── state3dMapping.json # Maps state names to 3D model keys
+│   ├── contexts/               # React contexts (ScrollContext)
+│   ├── constants/              # App-wide constants (regions.ts)
+│   ├── types/                  # TypeScript type definitions
+│   ├── App.tsx                 # Root component with React Router routes
+│   └── main.tsx                # Entry point
+├── content_requirements.md     # Tracks 87 missing image assets
+├── package.json
+├── vite.config.ts
+└── tsconfig.json
+```

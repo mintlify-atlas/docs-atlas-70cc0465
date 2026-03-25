@@ -1,0 +1,131 @@
+---
+title: "Image assets"
+description: "Managing image files for states, monuments, art forms, and timeline events."
+---
+
+Virasat serves all images as static files from the `public/` directory. Images are referenced in JSON data files using root-relative paths, and the app resolves them at runtime using utility functions in `src/utils/imageUrl.ts`.
+
+<Warning>
+  As of the last audit, **87 image assets** are missing or unresolved — they are tracked in `content_requirements.md` at the project root. These items currently fall back to a generated SVG placeholder. Contributions of correctly-sized WebP images are especially welcome.
+</Warning>
+
+## Image locations
+
+| Asset type | Directory |
+|------------|----------|
+| State art forms, monuments, festivals, museums | `public/state-images/` |
+| Reorganized/new state images | `public/state-images-new/` |
+| Downloaded/scraped images | `public/downloaded_images/` |
+| Timeline period highlights | `public/time-line-images/` |
+| 3D mudra models (single-hand) | `public/models/single-hand/` |
+| 3D mudra models (two-hand) | `public/models/two-hand/` |
+| GeoJSON map data | `public/india-states.json` |
+
+State image directories use `TitleCase_State_Name` as subdirectory names (e.g. `public/state-images/Andhra_Pradesh/`, `public/state-images/Andaman_Nicobar/`).
+
+## Image format
+
+WebP is the preferred format for all raster images. It provides significantly smaller file sizes compared to JPEG or PNG at equivalent visual quality.
+
+To batch-convert a folder of images to WebP, run:
+
+```bash
+npm run convert-images
+```
+
+This runs `scripts/convert-to-webp.mjs` using the [sharp](https://sharp.pixelplumbing.com/) library. The script converts images in-place or to a target directory depending on its configuration.
+
+To upscale low-resolution images before conversion, run:
+
+```bash
+npm run upscale-images
+```
+
+This runs `scripts/upscale-images.mjs` and uses sharp's Lanczos resampling to enlarge images to a target dimension. Upscaling should be done before WebP conversion.
+
+### Recommended dimensions
+
+| Usage | Target dimensions |
+|-------|------------------|
+| Art form / performing arts cards | ~800 × 600 px |
+| Monument / museum cards | ~800 × 600 px |
+| Timeline highlights | ~1200 × 800 px |
+| Thumbnails / grid items | ~400 × 300 px |
+
+## Referencing images in data files
+
+In `states.json`, `timeline.json`, and other data files, image paths are root-relative strings starting with `/`:
+
+```json
+{
+  "img": "/state-images/Andhra_Pradesh/kalamkari1.webp"
+}
+```
+
+Do **not** include the full domain or `public/` prefix — Vite strips `public/` and serves the files at the root path automatically.
+
+## Utility functions
+
+Three utility functions in `src/utils/imageUrl.ts` and `src/utils/fallbackImages.ts` handle image resolution at runtime.
+
+### `getImageUrl(path)`
+
+Prepends Vite's `BASE_URL` to a path and encodes each path segment for safe URL embedding:
+
+```typescript
+import { getImageUrl } from '../utils/imageUrl';
+
+// Returns "/state-images/Andhra_Pradesh/kalamkari1.webp"
+// (or "/virasat/state-images/..." if deployed to a subpath)
+const url = getImageUrl('/state-images/Andhra_Pradesh/kalamkari1.webp');
+```
+
+### `hasImage(path)`
+
+Type guard that returns `true` if a path is a non-empty string. Use this before rendering an `<img>` tag to avoid broken images:
+
+```typescript
+import { hasImage } from '../utils/imageUrl';
+
+if (hasImage(item.img)) {
+  // safe to render <img src={getImageUrl(item.img)} />
+}
+```
+
+### `getFallbackImage(title?, type?)`
+
+Defined in `src/utils/fallbackImages.ts`. Returns a fallback image data URI when the primary image is unavailable. The fallback is an SVG gradient with the Virasat wordmark. It accepts an optional `title` and `type` string for future category-specific fallbacks:
+
+```typescript
+import { getFallbackImage } from '../utils/fallbackImages';
+
+const fallback = getFallbackImage('Kalamkari Painting', 'painting');
+// Returns a data:image/svg+xml URI
+```
+
+<Note>
+  The fallback image system means missing images never cause broken `<img>` elements or layout shifts — the app renders a neutral dark-gradient placeholder automatically wherever `hasImage()` returns `false`.
+</Note>
+
+## Adding a new image
+
+<Steps>
+  <Step title="Prepare the image">
+    Source or photograph the image. Check that you have rights to use it (Creative Commons, NCERT-sourced, or original photography).
+  </Step>
+  <Step title="Upscale if needed">
+    If the image is smaller than the target dimensions, run `npm run upscale-images` after placing it in the appropriate `public/` subdirectory.
+  </Step>
+  <Step title="Convert to WebP">
+    Run `npm run convert-images` to convert the file to WebP format.
+  </Step>
+  <Step title="Update the data file">
+    Set the `img` field in `states.json` (or `timeline.json`) to the root-relative path:
+    ```json
+    "img": "/state-images/StateName/filename.webp"
+    ```
+  </Step>
+  <Step title="Update content_requirements.md">
+    If the image resolves a tracked missing asset, remove it from the table in `content_requirements.md`.
+  </Step>
+</Steps>

@@ -1,0 +1,81 @@
+---
+title: "Cultural Glossary"
+description: "A curated A–Z dictionary of Indian cultural terms, historical concepts, and heritage vocabulary."
+---
+
+The **Glossary** page (`/glossary`) is a searchable dictionary of cultural and historical terms from across India. Terms are organized alphabetically with a sidebar for quick letter-based navigation.
+
+## Interface
+
+<CardGroup cols={2}>
+  <Card title="A–Z sidebar" icon="list">
+    A vertical sidebar (horizontal on mobile) lists every letter. Letters with entries are highlighted; inactive letters are dimmed.
+  </Card>
+  <Card title="Alphabetical sections" icon="text">
+    Terms are grouped by starting letter into sections with large serif letter headings.
+  </Card>
+  <Card title="Quick jump" icon="arrow-down">
+    Click any active letter in the sidebar to smooth-scroll directly to that section (`#letter-A`, `#letter-B`, etc.).
+  </Card>
+  <Card title="Responsive layout" icon="monitor-smartphone">
+    On desktop, the A–Z sidebar is vertical on the left. On mobile, it becomes a horizontal scrollable row at the top.
+  </Card>
+</CardGroup>
+
+## Term cards
+
+Each glossary entry is displayed as a card with:
+- **Term** — displayed in large serif font (Inter, bold)
+- A gold decorative underline rule
+- **Definition** — a clear, concise definition in readable body text
+
+Cards are arranged in a responsive grid: 1 column on mobile, 2 on tablet, 3 on desktop.
+
+## Example terms
+
+The glossary covers a wide range of cultural domains:
+
+- **Dance & music** — Natya Shastra, Hasta Mudra, Navarasa, Tala, Raga
+- **Architecture** — Stupa, Gopuram, Shikhara, Vimana, Mandapa
+- **Crafts** — Kantha, Ikat, Madhubani, Pattachitra, Bidriware
+- **History** — Maurya, Gupta, Ashoka, Harappan, Dravidian
+- **Religion & philosophy** — Dharma, Karma, Bhakti, Ahimsa, Vedanta
+- **Festivals** — Diwali, Holi, Pongal, Onam, Bihu
+
+<Tip>
+  Click any highlighted letter in the A–Z sidebar to jump directly to that section. Letters shown in white with a border have entries; greyed-out letters are inactive.
+</Tip>
+
+## Data source
+
+All glossary content is stored in `src/data/glossary.json`:
+
+```json glossary.json
+{
+  "terms": [
+    {
+      "term": "Bharatanatyam",
+      "definition": "One of the oldest classical dance forms of India, originating in Tamil Nadu. It is known for its fixed upper torso, bent legs, and footwork, combined with hand gestures and eye movements."
+    },
+    {
+      "term": "Hasta Mudra",
+      "definition": "Hand gestures used in Indian classical dance and religious rituals. Codified in the Natya Shastra, they communicate emotions, objects, and concepts non-verbally."
+    }
+  ]
+}
+```
+
+Terms are sorted alphabetically by the application when rendered — the data file does not need to be pre-sorted.
+
+## Contributing glossary terms
+
+To add new terms, edit `src/data/glossary.json` and add entries to the `terms` array following the existing format. The application automatically groups them by starting letter and renders them in the correct section.
+
+<CardGroup cols={2}>
+  <Card title="Content structure" icon="database" href="/guides/content-structure">
+    Full data model documentation for all JSON files
+  </Card>
+  <Card title="Adding state data" icon="plus" href="/guides/adding-state-data">
+    How to add cultural content to the platform
+  </Card>
+</CardGroup>

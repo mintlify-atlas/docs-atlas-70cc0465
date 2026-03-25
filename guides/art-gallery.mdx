@@ -1,0 +1,84 @@
+---
+title: "Using the art gallery"
+description: "Browse and filter India's cultural art forms in the masonry gallery, and interact with detailed art form overlays."
+---
+
+The **Cultural Gallery** at `/artforms` brings together paintings, performing arts, handicrafts, monuments, festivals, and folk dances from across all Indian states into a single filterable masonry grid.
+
+<Note>
+Items without real images are displayed with tasteful placeholder images generated per art type (handicraft, performing arts, monument, etc.). Images that fail to load at runtime are automatically replaced with the appropriate fallback and move to the end of the masonry grid so items with real images always appear first.
+</Note>
+
+## Browsing the gallery
+
+<Steps>
+  <Step title="Navigate to the gallery">
+    Go to `/artforms` (the **Art Forms** link in the navigation bar). The page loads with a "Cultural Gallery" heading and the full masonry grid below.
+  </Step>
+  <Step title="Apply a filter">
+    Use the filter tab bar at the top to narrow the grid by content type. Click any tab to filter:
+
+    | Tab | Content shown |
+    |---|---|
+    | **All** | Every art form, monument, festival, and folk dance |
+    | **Painting** | Regional painting traditions (e.g. Madhubani, Warli, Pattachitra) |
+    | **Performing Arts** | Classical and contemporary performing arts |
+    | **Handicrafts** | Traditional craft forms and textile arts |
+    | **Monuments** | Heritage sites and architectural landmarks |
+    | **Festivals** | Fairs and annual cultural celebrations |
+    | **Folk Dance** | Regional folk dance traditions |
+  </Step>
+  <Step title="Browse the masonry grid">
+    The grid uses CSS columns (1–4 columns depending on screen width) with staggered card heights (250px–400px) for a Pinterest-style masonry layout. Items with real images are sorted to the front. Each card shows the image, the art type badge, the title, and the state name.
+  </Step>
+  <Step title="Open a detailed overlay">
+    Click any card to open the full detail overlay for that art form.
+  </Step>
+</Steps>
+
+## Art form detail overlay
+
+The overlay opens with a spring animation over a dark blurred backdrop. It is split into two panels:
+
+- **Left panel** — full image of the art form with the art type badge overlaid in the top-left corner
+- **Right panel** — scrollable detail content
+
+The right panel always shows:
+
+- The **state name** (with a map pin icon)
+- The **title** as a large headline
+- A **description** of the art form
+
+Additional detail fields appear when the data includes them:
+
+| Field | Description |
+|---|---|
+| **Renowned Artists** | Notable artists associated with this art form, with optional portrait images |
+| **Asamyukta Hastamudras** | Single-hand gesture descriptions used in this dance form, with gesture reference images |
+| **Samyukta Hastamudras** | Joint/two-hand gesture descriptions, with reference images |
+| **Navrasas (Expressions)** | The nine emotional expressions (bhavas) expressed in this dance form, with reference images |
+
+Image galleries within the overlay (Additional Images, Artist Portraits, Gesture References, Expression References) are horizontally scrollable strips. Click any thumbnail to open it in a full-screen floating viewer.
+
+Close the overlay by clicking the **×** button in the top-right of the right panel, or by clicking anywhere outside the overlay.
+
+## Below the masonry grid
+
+Scrolling past the masonry grid reveals two additional sections:
+
+### Hasta Mudras 3D gallery
+
+An interactive 3D gallery of all 50 Hasta Mudra (hand gesture) models. Use the toggle tabs to switch between:
+
+- **Asamyukta (Single Hand)** — 28 single-hand mudras including Alapadma, Pataka, Mayura, Arala, Kapittha, and more
+- **Samyukta (Two Hands)** — 22 two-hand mudras including Anjali, Garuda, Chakra, Sankha, Matsya, and more
+
+Each 3D model card is interactive — drag to rotate, pinch or scroll to zoom.
+
+### Classical Dance Forms
+
+A dedicated grid of the 8 principal classical dance forms of India, originating from the Natya Shastra. Click any dance form card to open the full detail overlay, which includes Navrasas (the 9 emotional expressions), Hastamudras, and renowned artists.
+
+<Tip>
+The Classical Dance Forms section has the richest detail overlays in the gallery. Each classical dance entry typically includes Navrasas (expressions), Asamyukta and Samyukta Hastamudras, and artist portraits — content that is not present for most other art form types.
+</Tip>

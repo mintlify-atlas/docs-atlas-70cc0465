@@ -1,0 +1,108 @@
+---
+title: "Tech stack"
+description: "The technologies and libraries that power Virasat."
+---
+
+Virasat is a fully static single-page application. All data is bundled at build time from JSON files — there is no backend, server, or database.
+
+## Package versions
+
+| Package | Version | Role |
+|---------|---------|------|
+| `react` | ^19.2.0 | UI component library |
+| `react-dom` | ^19.2.0 | DOM renderer |
+| `react-router-dom` | ^7.13.0 | Client-side routing |
+| `vite` | ^7.3.1 | Build tool and dev server |
+| `typescript` | ~5.9.3 | Static type checking |
+| `tailwindcss` | ^4.2.0 | Utility-first CSS framework |
+| `@tailwindcss/vite` | ^4.2.0 | Vite plugin for Tailwind CSS v4 |
+| `framer-motion` | ^12.34.3 | Animations and page transitions |
+| `lucide-react` | ^0.575.0 | Icon set |
+| `clsx` | ^2.1.1 | Conditional class name utility |
+| `tailwind-merge` | ^3.5.0 | Merges conflicting Tailwind classes |
+| `d3` | ^7.9.0 | Data-driven map rendering |
+| `d3-geo` | ^3.1.1 | Geographic projections for India map |
+| `@types/d3` | ^7.4.3 | TypeScript types for D3 |
+| `html2canvas` | ^1.4.1 | Canvas-based certificate generation for the games arcade |
+| `eslint` | ^9.39.1 | Linter |
+| `typescript-eslint` | ^8.48.0 | TypeScript-aware ESLint rules |
+| `sharp` | ^0.33.5 | Image processing (WebP conversion, upscaling) |
+| `@vitejs/plugin-react` | ^5.1.1 | Vite React plugin (Babel/SWC transform) |
+
+## Frontend framework
+
+**React 19** with **TypeScript 5.9** provides the component model and static type safety. The app uses function components and React hooks throughout — no class components.
+
+**React Router v7** (`react-router-dom`) handles all client-side navigation. Routes are defined in `src/App.tsx` and map to page-level components in `src/pages/`.
+
+**Vite 7** is the build tool and development server. It provides:
+- Native ES module dev server with instant startup
+- Hot Module Replacement (HMR) for sub-second feedback on file changes
+- Production builds with Rollup-based bundling and tree-shaking
+
+<Note>
+  Vite's HMR applies not just to TypeScript/React files but also to JSON data imports. Editing `states.json` while the dev server is running reloads the affected components automatically.
+</Note>
+
+## UI and styling
+
+**Tailwind CSS v4** (JIT mode) is used exclusively for styling. The Vite plugin (`@tailwindcss/vite`) integrates it directly into the build pipeline without a separate PostCSS configuration.
+
+**Framer Motion v12** powers all animated transitions — page entries, card reveals, map hover states, and the timeline scroll animations. The `motion.*` components and `AnimatePresence` are used throughout.
+
+**Lucide React** provides SVG icons. Icon names are referenced by string in `games.json` and resolved to components in the game selection UI.
+
+**clsx** and **tailwind-merge** are used together for conditional and conflict-free class name composition:
+
+```typescript
+import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+const cn = (...args) => twMerge(clsx(...args));
+```
+
+The visual design language is glassmorphism: frosted-glass cards with `backdrop-blur`, translucent `bg-white/10` backgrounds, and subtle border highlights against dark gradient backgrounds.
+
+## Data visualization
+
+**D3 v7** renders the interactive India map. The `d3-geo` subpackage provides geographic projection functions (Mercator). State boundary data is loaded from `public/india-states.json` as GeoJSON and projected onto an SVG canvas.
+
+D3 is used only for the map — all other data display (cards, lists, modals) is standard React JSX.
+
+## 3D rendering
+
+The **`<model-viewer>`** web component (a Google-developed custom element) is used to display `.glb` 3D models of classical dance mudra hand gestures. Models are stored in:
+
+- `public/models/single-hand/` — single-hand gesture models
+- `public/models/two-hand/` — two-hand gesture models
+
+The `model-viewer` script is loaded via CDN or bundled as a dependency; no additional build configuration is required.
+
+## Data layer
+
+All application data is stored in static JSON files under `src/data/`. There is no backend API, database, or server-side rendering. At build time, Vite bundles the JSON imports into the application JavaScript.
+
+The primary data files are:
+
+| File | Contents |
+|------|----------|
+| `states.json` | 36 states/UTs with art forms, monuments, festivals, museums, and classical dances |
+| `timeline.json` | 7 historical periods with highlights |
+| `glossary.json` | 68 cultural vocabulary terms |
+| `quiz.json` | 500+ trivia questions across multiple categories |
+| `games.json` | Metadata for 7 interactive games |
+
+## Development tooling
+
+**ESLint 9** with `typescript-eslint` and the `eslint-plugin-react-hooks` and `eslint-plugin-react-refresh` plugins enforces code quality. Run the linter with:
+
+```bash
+npm run lint
+```
+
+**Sharp** is a Node.js library for high-performance image processing. It is used only as a dev-time utility (not imported in application code) via two scripts:
+
+```bash
+npm run convert-images   # Convert images to WebP
+npm run upscale-images   # Upscale low-resolution images
+```

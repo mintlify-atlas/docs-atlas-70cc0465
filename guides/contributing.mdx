@@ -1,0 +1,121 @@
+---
+title: "Contributing"
+description: "How to contribute content, images, bug fixes, or new features to Virasat."
+---
+
+Contributions to Virasat fall into four categories: cultural content, images, 3D models, and code. All are welcome.
+
+## Contributing cultural content
+
+Cultural content (art forms, monuments, festivals, museums) is stored in `src/data/states.json`. To add or update content for a state:
+
+1. Open `src/data/states.json` in your editor.
+2. Find the state entry by its `id` field (e.g. `andhra-pradesh`, `rajasthan`).
+3. Add an object to the appropriate array (`art_forms.paintings`, `art_forms.performing_arts`, `art_forms.handicrafts`, `monuments`, `fairs_and_festivals`, or `museums`).
+4. Follow the existing JSON structure exactly — see [Adding state data](/guides/adding-state-data) for field-by-field documentation.
+5. Validate the JSON before committing (a syntax error breaks the entire app).
+
+All content should be sourced from or consistent with NCERT curriculum materials to align with Virasat's educational mission.
+
+<Note>
+  `content_requirements.md` in the project root tracks **87 missing image assets** as of the last audit. If you are adding content for any of the listed items and can supply the corresponding image, your contribution resolves a known gap — image contributions are especially welcome.
+</Note>
+
+## Contributing images
+
+Images must be in WebP format and placed in the correct `public/` subdirectory.
+
+<Steps>
+  <Step title="Source the image">
+    Ensure you have rights to use the image (Creative Commons license, original photography, or NCERT-sourced material).
+  </Step>
+  <Step title="Place the file">
+    Copy the image to the appropriate directory:
+    - State images: `public/state-images/StateName/filename.webp`
+    - Timeline images: `public/time-line-images/filename.webp`
+  </Step>
+  <Step title="Convert to WebP">
+    If your image is a JPEG or PNG, run:
+    ```bash
+    npm run convert-images
+    ```
+    For low-resolution images, upscale first:
+    ```bash
+    npm run upscale-images
+    ```
+  </Step>
+  <Step title="Update the data file">
+    Set the `img` field in `states.json` or `timeline.json` to the root-relative path:
+    ```json
+    "img": "/state-images/StateName/filename.webp"
+    ```
+  </Step>
+  <Step title="Update content_requirements.md">
+    Remove the resolved item from the table in `content_requirements.md`.
+  </Step>
+</Steps>
+
+### Recommended image dimensions
+
+| Use case | Target dimensions |
+|----------|------------------|
+| Art form / monument cards | ~800 × 600 px |
+| Timeline highlights | ~1200 × 800 px |
+| Thumbnails | ~400 × 300 px |
+
+## Contributing 3D models
+
+3D models are used for the classical dance mudra hand gesture viewer. Models must be in `.glb` format.
+
+- **Single-hand mudras**: place at `public/models/single-hand/{gesture-name}.glb`
+- **Two-hand mudras**: place at `public/models/two-hand/{gesture-name}.glb`
+
+The filename (without extension) must exactly match the gesture name as referenced in the art forms page component (`src/pages/ArtFormsPage.tsx`). Check that file for the expected model names before adding new models.
+
+## Contributing code
+
+<Steps>
+  <Step title="Fork the repository">
+    Fork [Avadhak47/NCERT](https://github.com/Avadhak47/NCERT) on GitHub and clone your fork locally.
+  </Step>
+  <Step title="Create a feature branch">
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+  </Step>
+  <Step title="Make your changes">
+    Follow the existing code style. TypeScript strict mode is enabled — avoid `any` types. Use Tailwind utility classes for all styling.
+  </Step>
+  <Step title="Lint before committing">
+    ```bash
+    npm run lint
+    ```
+    Fix all reported errors and warnings before pushing.
+  </Step>
+  <Step title="Open a pull request">
+    Push your branch and open a pull request on GitHub against the `main` branch. Describe what you changed and why.
+  </Step>
+</Steps>
+
+<Tip>
+  Always run `npm run lint` before pushing. The ESLint configuration enforces React hooks rules and TypeScript best practices — catching issues locally is faster than waiting for a CI failure.
+</Tip>
+
+## Reporting issues
+
+Found a bug, a missing cultural item, or an incorrect description? Open an issue at:
+
+**https://github.com/Avadhak47/NCERT/issues**
+
+Include the state name, the specific item, and a description of what is wrong or missing.
+
+---
+
+<CardGroup cols={2}>
+  <Card title="Adding state data" href="/guides/adding-state-data">
+    Step-by-step guide to adding art forms, monuments, festivals, and museums to states.json.
+  </Card>
+  <Card title="Image assets" href="/guides/image-assets">
+    How to manage, convert, and reference image files for states and timeline events.
+  </Card>
+</CardGroup>

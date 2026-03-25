@@ -1,0 +1,194 @@
+---
+title: "Adding state data"
+description: "How to add or update cultural content for a state in states.json."
+---
+
+All state cultural content lives in a single file: `src/data/states.json`. This guide walks through how to locate a state entry and add or update its paintings, performing arts, handicrafts, monuments, festivals, and museums.
+
+<Warning>
+  `states.json` must remain valid JSON at all times. A single missing comma or unclosed bracket will prevent the app from loading entirely. Always validate the file after editing — use VS Code's built-in JSON validation or run it through a JSON linter before committing.
+</Warning>
+
+## Step 1: Open states.json
+
+Open `src/data/states.json` in your editor. The file is large (~13,000 lines) so it helps to use your editor's symbol search or a JSON formatter to navigate.
+
+## Step 2: Find the state entry
+
+The root object contains a `states` array. Each state has a unique `id` slug. Search for the state by name or id:
+
+```json
+{
+  "id": "andhra-pradesh",
+  "name": "Andhra Pradesh",
+  ...
+}
+```
+
+State IDs follow the pattern `kebab-case-state-name` (e.g. `andhra-pradesh`, `andaman-nicobar`, `jammu-kashmir`).
+
+## Step 3: Add a painting or visual art form
+
+Add an object to the `art_forms.paintings` array. The fields `historical_significance` and `materials` are optional but recommended for richer entries:
+
+```json
+{
+  "id": "unique-id",
+  "name": "Art Form Name",
+  "desc": "Description of this art form, its origins, techniques, and cultural significance.",
+  "img": "/state-images/StateName/filename.webp",
+  "historical_significance": "Contemporary | Modern 1947-1980 | Medieval 1550-1750 | Ancient",
+  "materials": "Natural dyes, cotton cloth, bamboo pen"
+}
+```
+
+Real example from Andhra Pradesh:
+
+```json
+{
+  "id": "n7b6y20fq",
+  "name": "Kalamkari Artist",
+  "desc": "Kalamkari refers to a method of painting with natural dyes with a bamboo pen or kalam. Done on cotton or silk fabric, this art flourished at Masulipatnam and Srikalahasti in Andhra Pradesh.",
+  "img": "/state-images/Andhra_Pradesh/kalamkari1.webp",
+  "historical_significance": "Contemporary",
+  "materials": ""
+}
+```
+
+## Step 4: Add a performing art
+
+Add an object to the `art_forms.performing_arts` array. The structure is identical to paintings:
+
+```json
+{
+  "id": "unique-id",
+  "name": "Dance or Music Form Name",
+  "desc": "Full description including origins, style, notable practitioners, and significance.",
+  "img": "/state-images/StateName/filename.webp",
+  "historical_significance": "Modern 1947-1980",
+  "materials": ""
+}
+```
+
+Real example from Andhra Pradesh:
+
+```json
+{
+  "id": "o9asbod27",
+  "name": "Andhra Pradesh- Performing Art- Dance- Kuchipudi",
+  "desc": "Kuchipudi, a blend of music and abhinaya, is Andhra Pradesh's unique contribution to dance which originated from a village called Kuchelapuri or Kuchelapuram in Krishna district around 300 B.C.",
+  "img": "/state-images/Andhra_Pradesh/Kuchipudi-Dance.webp",
+  "historical_significance": "Modern 1947-1980",
+  "materials": ""
+}
+```
+
+## Step 5: Add a monument
+
+Add an object to the `monuments` array:
+
+```json
+{
+  "id": "unique-id",
+  "name": "Monument Name",
+  "desc": "Description of the monument, its history, architectural style, and significance.",
+  "img": "/state-images/StateName/filename.webp"
+}
+```
+
+Richer monument entries can also carry `historical_significance` and `materials`. Real example:
+
+```json
+{
+  "id": "a7182a5c",
+  "name": "Cellular Jail",
+  "desc": "Cellular Jail, located in Sri Vijaya Puram, South Andaman district, is a historic colonial prison and one of India's most important freedom struggle monuments. Built by the British in 1906, it was used to exile political prisoners during the struggle for independence.",
+  "img": "/state-images-new/UTs/c363bde89eee.jpg"
+}
+```
+
+## Step 6: Add a festival
+
+Add an object to the `fairs_and_festivals` array. The structure is the same as paintings:
+
+```json
+{
+  "id": "unique-id",
+  "name": "Festival Name",
+  "desc": "Description of the festival, when it is celebrated, its rituals, and cultural significance.",
+  "img": "/state-images/StateName/filename.webp",
+  "historical_significance": "",
+  "materials": ""
+}
+```
+
+Real example from Andhra Pradesh:
+
+```json
+{
+  "id": "rs4t6d07k",
+  "name": "Andhra Pradesh- Fairs and Festivals- Ugadi",
+  "desc": "Ugadi is the Telugu new year day celebrated on Chaitra Suddha Padyami, the first day of the bright fortnight in the month of Chaitra (April).",
+  "img": "/state-images/Andhra_Pradesh/ugadi-pachadi.webp",
+  "historical_significance": "",
+  "materials": ""
+}
+```
+
+## Step 7: Add a museum
+
+Add an object to the `museums` array:
+
+```json
+{
+  "id": "unique-id",
+  "name": "Museum Name",
+  "desc": "Description of the museum, its collection, founding, and significance.",
+  "img": "/state-images/StateName/filename.webp",
+  "historical_significance": "Modern 1947-1980",
+  "materials": ""
+}
+```
+
+Real example:
+
+```json
+{
+  "id": "c3mbi3sfn",
+  "name": "Salar Jung Museum",
+  "desc": "The Salar Jung Museum is one of the oldest museums that has the largest personal collection of artifacts of Nawab Mir Yousuf Ali Khan Salar Jung III. The museum houses more than 43,000 art objects and 50,000 books in 38 rooms.",
+  "img": "/state-images/Andhra_Pradesh/salar-jung-museum.webp",
+  "historical_significance": "Modern 1947-1980",
+  "materials": ""
+}
+```
+
+## Step 8: Generating IDs
+
+Each content item needs a unique `id`. The existing IDs in the file use two formats:
+- Short hex strings: `a7182a5c`, `401c58d0`
+- Alphanumeric slugs: `o9asbod27`, `842wmtprm`, `rs4t6d07k`
+
+You can generate a random 8-character hex string with:
+
+```bash
+node -e "console.log(Math.random().toString(16).slice(2,10))"
+```
+
+## Step 9: Validate and test
+
+After editing, validate the file before running the dev server:
+
+```bash
+node -e "JSON.parse(require('fs').readFileSync('src/data/states.json','utf8')); console.log('Valid JSON')"
+```
+
+Then start the dev server and navigate to the state page to confirm your content appears correctly:
+
+```bash
+npm run dev
+```
+
+<Tip>
+  Check `content_requirements.md` in the project root before adding new content. It tracks all 87 currently missing image assets by state and category. If you are adding content for a listed item, you can resolve a known gap and update the file to reflect the fix.
+</Tip>

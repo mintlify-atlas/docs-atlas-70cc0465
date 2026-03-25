@@ -1,0 +1,69 @@
+---
+title: "Navigating the map"
+description: "Learn to use the interactive India map to explore states, regions, and cultural detail panels."
+---
+
+The interactive India map at `/explore` is the primary way to discover Virasat's cultural content. This guide walks you through every part of the map interface.
+
+<Note>
+As you scroll down the page, the map card smoothly expands from a rounded glass card (with 40px border radius and slight margin) to a full-screen panel that spans the entire viewport. This fluid animation is driven by Framer Motion scroll transforms — no jarring page transitions.
+</Note>
+
+## Opening the map
+
+Navigate to `/explore` in the app. The page loads with a large hero section:
+
+- The **BHARAT — THE LAND OF TIMELESS HERITAGE** title fills the top of the screen
+- Below it, a **3D Heritage Showcase** displays six curated Hasta Mudra models (Alapadma, Anjali, Pataka, Garuda, Mayura, Chakra) that you can interact with
+- Scrolling down reveals the interactive India map card
+
+## Regional filter tabs
+
+Across the top of the map panel, a pill-shaped tab bar shows the 7 geographic regions of India:
+
+- **NORTH** — Jammu & Kashmir, Himachal Pradesh, Punjab, Uttarakhand, Haryana, Delhi, Uttar Pradesh, Chandigarh, Ladakh
+- **SOUTH** — Andhra Pradesh, Telangana, Karnataka, Kerala, Tamil Nadu, Puducherry, Andaman & Nicobar, Lakshadweep
+- **EAST** — Bihar, Jharkhand, West Bengal, Odisha
+- **WEST** — Rajasthan, Gujarat, Maharashtra, Goa, Dadra & Nagar Haveli, Daman & Diu
+- **CENTRAL** — Madhya Pradesh, Chhattisgarh
+- **NORTH EAST** — Sikkim, Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya
+- **UNION TERRITORIES** — UI filter grouping for all union territories across the geographic regions above
+
+Clicking a region tab highlights the states in that region at full opacity and fades all other states to lower opacity.
+
+## Navigating to a state
+
+<Steps>
+  <Step title="Select a region">
+    Click one of the 7 region filter tabs to zoom into that part of India. States in the region are highlighted.
+  </Step>
+  <Step title="Click a state shape">
+    Click any highlighted state on the map. The map panel expands to fill the full viewport height.
+  </Step>
+  <Step title="View the cultural detail panel">
+    A state detail panel slides in from the right on desktop, or slides up from the bottom on mobile. It shows the state's monuments, art forms, festivals, museums, and more.
+  </Step>
+  <Step title="Explore monuments on the map">
+    When a state is active, monument POI markers appear on the map at their geographic coordinates. Click a marker to scroll directly to that monument in the detail panel.
+  </Step>
+  <Step title="Go back">
+    Click the **×** button in the top-right of the state detail panel, or click anywhere on the visible map area outside the panel, to return to the region view. Click a region tab again (or navigate away) to return to the full India view.
+  </Step>
+</Steps>
+
+## High contrast mode
+
+In the top-right corner of the map toolbar, next to the regional filter tabs, there is an **Eye** icon button. Clicking it toggles **High Contrast** color mode:
+
+- **Default mode** — colorful fill palette (sky blue, orange, green, purple, yellow, pink, teal) with white state borders
+- **High Contrast mode** — all states fill to solid black with bright yellow borders; POI markers turn white
+
+This mode is useful for accessibility and for focusing on geographic boundaries without the distraction of color.
+
+## URL deep-linking
+
+<Tip>
+You can navigate directly to any state's detail panel by visiting `/explore/StateName` — for example, `/explore/Rajasthan` or `/explore/Tamil%20Nadu`. The map loads, selects the state automatically, and opens its cultural panel. Share this URL with others to link directly to a specific state.
+</Tip>
+
+The URL also updates automatically when you select a state through the map UI, so your browser history reflects the navigation path.

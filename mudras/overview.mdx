@@ -1,0 +1,74 @@
+---
+title: "Hasta Mudras"
+description: "50 interactive 3D hand gesture models from Indian classical dance — rotate, zoom, and explore each mudra in your browser."
+---
+
+## What Are Hasta Mudras?
+
+Hasta Mudras are the codified hand gestures of Indian classical dance. The word *hasta* means "hand" in Sanskrit, and *mudra* means "seal" or "gesture." Together they form a precise vocabulary of hand positions that convey meaning, emotion, narrative, and symbolic identity in performances.
+
+The complete system of mudras is codified in the **Natya Shastra**, the foundational treatise on Indian performing arts attributed to the sage Bharata Muni. The text describes hundreds of gestures along with their theatrical meanings, ritual uses, and choreographic applications across Indian classical dance forms including Bharatanatyam, Kathak, Odissi, Kuchipudi, Mohiniyattam, and Manipuri.
+
+<Note>
+  The Natya Shastra is an ancient Sanskrit treatise on performing arts, estimated to have been composed between 200 BCE and 200 CE. It covers drama, dance, music, stagecraft, and aesthetics, and remains the primary reference for classical Indian dance traditions to this day.
+</Note>
+
+## Two Categories of Mudras
+
+The Natya Shastra organizes hasta mudras into two major categories:
+
+| Category | Sanskrit Name | Description | Count in Virasat |
+|---|---|---|---|
+| Single-hand gestures | **Asamyukta Hasta** | Performed with one hand independently | 28 mudras |
+| Two-hand gestures | **Samyukta Hasta** | Require both hands used together | 22 mudras |
+
+Virasat includes all **50 mudras** — 28 Asamyukta and 22 Samyukta — as fully interactive 3D models.
+
+## Interactive 3D Models in Virasat
+
+Every mudra in Virasat is rendered as a **WebGL/GLB 3D model**, loaded directly in the browser using the `<model-viewer>` web component. No plugins or downloads are required.
+
+3D model files are served at:
+
+```
+/models/single-hand/{name}.glb   — Asamyukta (single-hand) mudras
+/models/two-hand/{name}.glb      — Samyukta (two-hand) mudras
+```
+
+### How to Interact
+
+- **Rotate** — click and drag (or touch and drag on mobile) to orbit around the model
+- **Zoom** — scroll the mouse wheel or use a two-finger pinch gesture
+- **Expand** — click the fullscreen icon on any card to open an enlarged viewer with auto-rotation enabled
+
+In the expanded viewer, the model auto-rotates at 10° per second so you can observe the hand shape from all angles without manual input.
+
+## Where to Find Them
+
+### Art Forms Page
+
+Navigate to the **Art Forms** page (`/artforms`) and scroll down past the Cultural Gallery to the **Hasta Mudras** section. Use the tab buttons to switch between:
+
+- **Asamyukta (Single Hand)** — shows all 28 single-hand mudras in a responsive grid
+- **Samyukta (Two Hands)** — shows all 22 two-hand mudras
+
+Each card in the grid is an interactive 3D viewer. The models animate with a slow oscillating rotation by default so the gesture is visible immediately without any interaction.
+
+### Explore Page
+
+The **Explore** page (`/explore`) features a curated hero showcase of six mudras selected to represent both categories:
+
+<Tip>
+  The Explore page highlights 6 mudras that span both categories: **Alapadma** and **Pataka** and **Mayura** (single-hand) alongside **Anjali**, **Garuda**, and **Chakra** (two-hand). These six were chosen for their cultural significance and visual distinctiveness, making them ideal entry points for users new to mudra study.
+</Tip>
+
+## Explore the Full Collection
+
+<CardGroup cols={2}>
+  <Card title="Asamyukta Hasta Mudras" icon="hand" href="/mudras/single-hand">
+    28 single-hand gestures including Pataka, Mayura, Alapadma, Katakamukha, and more.
+  </Card>
+  <Card title="Samyukta Hasta Mudras" icon="hands" href="/mudras/two-hand">
+    22 two-hand gestures including Anjali, Garuda, Chakra, Sankha, and more.
+  </Card>
+</CardGroup>

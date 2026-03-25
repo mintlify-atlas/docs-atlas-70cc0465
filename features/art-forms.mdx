@@ -1,0 +1,117 @@
+---
+title: "Cultural Gallery"
+description: "Browse India's diverse art forms — paintings, performing arts, handicrafts, monuments, festivals, and folk dances in an interactive masonry gallery."
+---
+
+The **Art Forms** page (`/artforms`) is a full cultural gallery aggregating heritage content from all states into a single browsable, filterable masonry grid. It includes paintings, performing arts, handicrafts, monuments, festivals, folk dances, 3D Hasta Mudras, and India's 8 classical dance forms.
+
+## Gallery overview
+
+<CardGroup cols={2}>
+  <Card title="Masonry grid" icon="grid-2x2">
+    A responsive CSS columns layout (1–4 columns) showing art form cards with staggered heights for visual variety.
+  </Card>
+  <Card title="Category filters" icon="filter">
+    7 filter tabs let you narrow the gallery by art type. Cards with real images always float to the top.
+  </Card>
+  <Card title="Detailed overlays" icon="expand">
+    Click any card to open a full-screen overlay with image, description, artists, gestures, and expression references.
+  </Card>
+  <Card title="3D Mudra section" icon="hand">
+    Scroll past the grid to find 50 interactive 3D Hasta Mudra models and 8 Classical Dance forms.
+  </Card>
+</CardGroup>
+
+## Filter categories
+
+| Tab | Content |
+|-----|---------|
+| **All** | Everything — paintings, performing arts, handicrafts, monuments, festivals, folk dance |
+| **Painting** | Traditional paintings from each state (Madhubani, Pattachitra, Kalamkari, etc.) |
+| **Performing Arts** | Classical and folk dance forms, music, theatre |
+| **Handicrafts** | Textiles, pottery, woodwork, metalwork, and other craft traditions |
+| **Monuments** | Temples, forts, palaces, stupas, and UNESCO heritage sites |
+| **Festivals** | Fairs and festivals from each state |
+| **Folk Dance** | Regional folk dance forms distinct from classical traditions |
+
+## Art form cards
+
+Each card in the masonry grid shows:
+- A heritage image (with automatic fallback if no local image is available)
+- A type badge (e.g. `PAINTING`, `HANDICRAFTS`)
+- The art form's title
+- The state it belongs to (with a map pin icon)
+
+Cards are sorted so items with real local images appear first. Items using fallback images from Unsplash sink to the bottom.
+
+## Detail overlay
+
+Click any card to open a split-panel overlay:
+
+**Left panel** — full art form image with type badge overlay
+
+**Right panel** — scrollable detail content:
+
+<AccordionGroup>
+  <Accordion title="Description">
+    The primary `desc` field — a narrative description of the art form, its origins, techniques, and cultural context.
+  </Accordion>
+  <Accordion title="Additional Images">
+    A horizontally scrollable row of supplementary images. Click any thumbnail to expand it to a floating full-screen lightbox.
+  </Accordion>
+  <Accordion title="Renowned Artists">
+    Notable practitioners and masters of the art form. Includes artist portrait images where available.
+  </Accordion>
+  <Accordion title="Asamyukta Hastamudras (Single Hand Gestures)">
+    For dance forms — description of single-hand gestures used, with reference images.
+  </Accordion>
+  <Accordion title="Samyukta Hastamudras (Joint Hand Gestures)">
+    For dance forms — description of two-hand gestures used, with reference images.
+  </Accordion>
+  <Accordion title="Navrasas (Expressions)">
+    The 9 emotional expressions (bhavas) expressed in the dance form, with reference images.
+  </Accordion>
+  <Accordion title="Historical Significance & Materials">
+    Fallback fields shown when artist/gesture data is not available — historical context and materials/process.
+  </Accordion>
+</AccordionGroup>
+
+## Hasta Mudras section
+
+Scrolling below the masonry grid reveals the **Hasta Mudras 3D section** — 50 interactive WebGL models organized in a grid:
+
+- **Asamyukta (Single Hand)** tab — 28 single-hand mudras
+- **Samyukta (Two Hands)** tab — 22 two-hand mudras
+
+Each model card shows the mudra name and a 3D viewer where you can:
+- Drag to rotate the model
+- Scroll/pinch to zoom
+- Interact with the gesture from any angle
+
+## Classical Dance Forms section
+
+Below the mudras is a dedicated **Classical Dance Forms** grid showcasing the 8 principal classical dances of India — all originating from the traditions codified in the Natya Shastra:
+
+1. Bharatanatyam (Tamil Nadu)
+2. Kuchipudi (Andhra Pradesh)
+3. Odissi (Odisha)
+4. Kathak (Uttar Pradesh / Rajasthan)
+5. Manipuri (Manipur)
+6. Mohiniyattam (Kerala)
+7. Kathakali (Kerala)
+8. Sattriya (Assam)
+
+Clicking any dance form card opens the same detailed overlay — these entries have the richest data including Navrasas, Asamyukta and Samyukta Hastamudra references, and artist portraits.
+
+<Tip>
+  The Classical Dance Forms section at the bottom of the Art Forms page has the most detailed overlays in the platform. They include Navrasas (9 expressions), gesture references for both single-hand and two-hand mudras, and artist portrait galleries.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="Art gallery guide" icon="image" href="/guides/art-gallery">
+    Step-by-step walkthrough of the gallery interface
+  </Card>
+  <Card title="3D Mudra Models" icon="cube" href="/mudras/overview">
+    Learn about all 50 Hasta Mudra 3D models
+  </Card>
+</CardGroup>

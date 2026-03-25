@@ -1,0 +1,295 @@
+---
+title: "Content structure"
+description: "How Virasat's cultural data is organized — the data model for states, timelines, games, and glossary."
+---
+
+All of Virasat's cultural content lives in static JSON files under `src/data/`. There is no backend or database — the browser loads these files directly at runtime via Vite's asset pipeline.
+
+## states.json — the central data store
+
+`src/data/states.json` is the primary data file. It contains a root-level `states` array (one object per Indian state and union territory) and a separate `global_classical_dances` array for pan-India classical dance forms.
+
+### State object structure
+
+Each entry in the `states` array follows this shape (abbreviated example from Andhra Pradesh):
+
+```json
+{
+  "id": "andhra-pradesh",
+  "name": "Andhra Pradesh",
+  "geography": {
+    "capital": "Amaravati",
+    "key_cities": []
+  },
+  "facts": [
+    "Salar Jung Museum holds one of the world's largest personal art collections."
+  ],
+  "art_forms": {
+    "paintings": [
+      {
+        "id": "842wmtprm",
+        "name": "Andhra Pradesh- Handicrafts- Floor Painting",
+        "desc": "The art of floor painting in Andhra Pradesh is known as muggulu...",
+        "img": "/state-images/Andhra_Pradesh/Muggulu-Andhra.webp",
+        "historical_significance": "Contemporary",
+        "materials": ""
+      }
+    ],
+    "performing_arts": [
+      {
+        "id": "o9asbod27",
+        "name": "Andhra Pradesh- Performing Art- Dance- Kuchipudi",
+        "desc": "Kuchipudi, a blend of music and abhinaya, is Andhra Pradesh's unique contribution...",
+        "img": "/state-images/Andhra_Pradesh/Kuchipudi-Dance.webp",
+        "historical_significance": "Modern 1947-1980",
+        "materials": ""
+      }
+    ],
+    "handicrafts": [
+      {
+        "id": "4l172oqvl",
+        "name": "Andhra Pradesh- Handicrafts- Bidri/Inlay on Metal",
+        "desc": "The craft of Bidri or inlay on metal originated in Persia...",
+        "img": "/state-images/Andhra_Pradesh/bidri1.webp",
+        "historical_significance": "Contemporary",
+        "materials": ""
+      }
+    ],
+    "dance_forms": {
+      "folk": [
+        {
+          "id": "e80fa697",
+          "name": "Nicobari Dance",
+          "desc": "The traditional dance form hailing from the indigenous communities of the Nicobar Islands.",
+          "img": "https://www.incredibleindia.gov.in/..."
+        }
+      ]
+    }
+  },
+  "monuments": [
+    {
+      "id": "a7182a5c",
+      "name": "Cellular Jail",
+      "desc": "Historic colonial prison built by the British in 1906...",
+      "img": "/state-images-new/UTs/c363bde89eee.jpg"
+    }
+  ],
+  "fairs_and_festivals": [
+    {
+      "id": "rs4t6d07k",
+      "name": "Andhra Pradesh- Fairs and Festivals- Ugadi",
+      "desc": "Ugadi is the Telugu new year day celebrated on Chaitra Suddha Padyami...",
+      "img": "/state-images/Andhra_Pradesh/ugadi-pachadi.webp",
+      "historical_significance": "",
+      "materials": ""
+    }
+  ],
+  "museums": [
+    {
+      "id": "c3mbi3sfn",
+      "name": "Salar Jung Museum",
+      "desc": "One of the oldest museums with the largest personal collection of artifacts...",
+      "img": "/state-images/Andhra_Pradesh/salar-jung-museum.webp",
+      "historical_significance": "Modern 1947-1980",
+      "materials": ""
+    }
+  ],
+  "tribal_culture": [
+    {
+      "id": "57748b1c",
+      "culture": "Jarawa; Onge; Great Andamanese",
+      "dance": "Jarawa ceremonial dances; Onge rituals",
+      "img": "/downloaded_images/028e3508c1ab0586e8f4b97713a21e07.webp"
+    }
+  ]
+}
+```
+
+### Key fields reference
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | URL-safe slug, e.g. `andhra-pradesh` |
+| `name` | string | Display name of the state |
+| `geography.capital` | string | State capital city |
+| `geography.key_cities` | string[] | Other notable cities |
+| `facts` | string[] | Interesting facts shown on the state card |
+| `art_forms.paintings` | object[] | Visual art forms and traditional paintings |
+| `art_forms.performing_arts` | object[] | Dance, music, and theatre traditions |
+| `art_forms.handicrafts` | object[] | Craft traditions |
+| `art_forms.dance_forms.folk` | object[] | Folk dance forms |
+| `monuments` | object[] | Heritage monuments and sites |
+| `fairs_and_festivals` | object[] | Festivals and fairs |
+| `museums` | object[] | Museums in the state |
+| `tribal_culture` | object[] | Tribal communities and their traditions |
+
+All content items within `art_forms`, `monuments`, `fairs_and_festivals`, and `museums` share a common base shape:
+
+```json
+{
+  "id": "unique-8-char-hex-or-alphanumeric",
+  "name": "Display name",
+  "desc": "Full description text",
+  "img": "/state-images/StateName/filename.webp"
+}
+```
+
+The richer entries (primarily in `paintings`, `performing_arts`, `handicrafts`, `museums`, and `fairs_and_festivals`) additionally carry:
+
+```json
+{
+  "historical_significance": "Contemporary | Modern 1947-1980 | Medieval 1550-1750",
+  "materials": "Materials or techniques used"
+}
+```
+
+### global_classical_dances array
+
+At the root level of `states.json` (outside the `states` array) there is a `global_classical_dances` array covering pan-India classical dance forms such as Bharatanatyam, Kathak, Kuchipudi, Manipuri, and others. Each entry is more detailed than a typical state item:
+
+```json
+{
+  "id": "2cc695ad",
+  "name": "Bharatanatyam",
+  "desc": "Bharatanatyam is a dance from Tamil Nadu...",
+  "img": "/downloaded_images/9b707d3c712effa0049401f5bbe38055.webp",
+  "images": ["/downloaded_images/..."],
+  "artists": "1. C. V. Chandrashekhar",
+  "artists_images": ["/downloaded_images/..."],
+  "single_gestures": "1. Pataka\n2. Tripataka\n...",
+  "single_gestures_images": [],
+  "joint_gestures": "1. Anjali\n2. Kapota\n...",
+  "joint_gestures_images": ["/downloaded_images/..."],
+  "navrasas": "1. Shringara Rasa...\n2. Hasya Rasa...",
+  "navrasas_images": ["/downloaded_images/..."]
+}
+```
+
+These entries power the interactive mudra viewer and 3D model page in the app.
+
+---
+
+## timeline.json — historical periods
+
+`src/data/timeline.json` contains a single `periods` array. Each period represents a broad era of Indian cultural history and powers the interactive timeline page.
+
+```json
+{
+  "periods": [
+    {
+      "id": "ancient",
+      "name": "Ancient",
+      "years": "600 BCE - 750 CE",
+      "color": "#E1005A",
+      "description": "The golden age of Indian civilization — the era of Mauryas, Guptas, and the birth of Buddhism and Jainism.",
+      "highlights": [
+        {
+          "name": "Lion Capital of Ashoka",
+          "location": "Sarnath, Uttar Pradesh",
+          "description": "The national emblem of India, originally placed atop an Ashoka Pillar",
+          "image": "/time-line-images/sarnath_Lion_Capital_of_Ashoka.webp"
+        },
+        {
+          "name": "Deogarh Dashavatara Temple",
+          "location": "Uttar Pradesh",
+          "description": "One of the earliest Hindu stone temples with remarkable Gupta-era sculptures",
+          "image": "/time-line-images/deogarh.webp"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The seven defined periods are: Pre-Historic (until 3000 BCE), Proto-Historic (3000–600 BCE), Ancient (600 BCE–750 CE), Early Medieval (750–1550 CE), Medieval (1550–1750 CE), Modern (1750–1980 CE), and Contemporary (1980–present). Each period has a unique `color` hex value used to tint the timeline UI.
+
+---
+
+## glossary.json — cultural terms
+
+`src/data/glossary.json` contains a flat `terms` array of cultural, architectural, and performing-arts vocabulary sourced from NCERT texts.
+
+```json
+{
+  "terms": [
+    { "term": "Gopuram", "definition": "A monumental tower at the entrance of a temple, especially in Southern India" },
+    { "term": "Mudra", "definition": "A symbolic or ritual gesture, usually performed with hands and fingers" },
+    { "term": "Raga", "definition": "A melodic framework for improvisation in Indian classical music" },
+    { "term": "Stupa", "definition": "A mound-like structure containing Buddhist relics" }
+  ]
+}
+```
+
+The glossary currently contains 68 terms spanning temple architecture (Shikhara, Garbhagriha, Mandapa), Buddhist terms (Stupa, Chaitya, Vihara), dance vocabulary (Bharatanatyam, Kathak, Mudra), and textile arts (Zari, Appliqué).
+
+---
+
+## quiz.json — trivia questions
+
+`src/data/quiz.json` contains a `questions` array used by the Culture Trivia Quiz game. Each question belongs to a named category.
+
+```json
+{
+  "questions": [
+    {
+      "category": "Pan India classical Dance Forms",
+      "question": "Bharatanatyam originated in which Indian state?",
+      "options": [
+        "Kerala",
+        "Tamil Nadu",
+        "Karnataka",
+        "Andhra Pradesh"
+      ],
+      "answer": 1
+    }
+  ]
+}
+```
+
+The `answer` field is a zero-based index into the `options` array (in the example above, index `1` corresponds to `"Tamil Nadu"`). The file contains several hundred questions across categories such as classical dance forms, monuments, handicrafts, and historical periods.
+
+---
+
+## games.json — game metadata
+
+`src/data/games.json` contains a `games` array with metadata for each interactive game available in the Games section. This file drives the game selection UI; the actual game logic lives in React components.
+
+```json
+{
+  "games": [
+    {
+      "id": 1,
+      "title": "State on Map",
+      "type": "Drag & Drop",
+      "difficulty": "Easy",
+      "color": "bg-emerald-500",
+      "description": "Drag each state onto its correct location on the India map.",
+      "icon": "MapPin"
+    },
+    {
+      "id": 4,
+      "title": "Historical Timeline",
+      "type": "Drag & Drop",
+      "difficulty": "Hard",
+      "color": "bg-orange-500",
+      "description": "Place Indian history periods in the correct chronological order.",
+      "icon": "Clock"
+    },
+    {
+      "id": 7,
+      "title": "Culture Trivia Quiz",
+      "type": "Quiz",
+      "difficulty": "Hard",
+      "color": "bg-indigo-500",
+      "description": "Test your knowledge of Indian art, culture, and heritage with hundreds of questions.",
+      "icon": "BookOpen"
+    }
+  ]
+}
+```
+
+The `icon` field references a Lucide React icon name. The `color` field is a Tailwind CSS background class applied to the game card.
+
+<Note>
+  All cultural content in Virasat is sourced from NCERT curriculum materials (primarily the Class 8 *Kriti* textbook and related social science texts). Content additions should remain aligned with NCERT descriptions and terminology.
+</Note>

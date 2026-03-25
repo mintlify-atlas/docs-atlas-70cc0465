@@ -1,0 +1,88 @@
+---
+title: "Educational Games"
+description: "7 interactive mini-games to test and build knowledge of Indian geography, heritage, monuments, dance, and culture."
+---
+
+The **Games** page (`/games`) is an educational game arcade with 7 mini-games covering Indian geography, cultural heritage, monuments, dance forms, and history. All games use real data from the platform's cultural database.
+
+## Game arcade
+
+Navigate to `/games`. Before the arcade loads, you are prompted to **enter your player name** — this name is used on participation certificates when you complete a game. After submitting your name, you see all 7 game cards.
+
+<CardGroup cols={2}>
+  <Card title="State on Map" icon="map">
+    Drag state name chips onto their correct location on the D3 India map. 10 random states per round.
+  </Card>
+  <Card title="Heritage Site Builder" icon="puzzle">
+    Reassemble a 2×2 image puzzle of a random Indian monument. Click two pieces to swap them.
+  </Card>
+  <Card title="Guess the Dance Form" icon="music">
+    See a dance form name (sometimes with image) and choose which state it originates from. 4 options, 10 rounds.
+  </Card>
+  <Card title="Historical Timeline" icon="clock">
+    Arrange shuffled historical periods in chronological order using up/down arrows. Score = correctly placed eras.
+  </Card>
+  <Card title="State to Region" icon="compass">
+    Drag all Indian states into their correct geographic region (North/South/East/West/Central/Northeast).
+  </Card>
+  <Card title="Monument & State" icon="landmark">
+    Given a heritage site name and image, choose which of 4 states it belongs to. 10 rounds.
+  </Card>
+</CardGroup>
+
+## Culture Trivia Quiz
+
+A 7th game — **Culture Trivia Quiz** — presents 10 random multiple-choice questions drawn from `src/data/quiz.json`:
+
+- Questions span categories like classical dance, monuments, festivals, history, and handicrafts
+- Each question has 4 options (A / B / C / D)
+- The correct answer is highlighted in green immediately after selecting
+- Wrong answers are shown in red; the correct answer is also revealed
+
+## Scoring and certificates
+
+All games display scores in the format `X / Y correct`. Scores are shown live during the game and as a final score card when the game ends.
+
+After completing a game, Virasat prompts you to generate a **Certificate of Participation**:
+
+- Enter (or confirm) your name to personalise the certificate
+- The certificate is drawn on an HTML Canvas with your name, the game title, your score, a unique certificate ID (`CERT-{timestamp}-{random}`), and the date
+- Click **Download** to save the certificate as a PNG image to your device
+- Completed certificates are stored in `localStorage` under the key `virasat_certs` so you can re-download them from your browser without replaying the game
+
+<Note>
+  Certificates are generated entirely in the browser using the HTML Canvas API — no data is sent to a server.
+</Note>
+
+## Mobile support
+
+All drag-and-drop games support a **tap-to-select** alternative for mobile:
+1. Tap a state/item to select it (it highlights in amber)
+2. Tap a region/destination to place it
+
+This works for both **State on Map** and **State to Region** games.
+
+<Tip>
+  On mobile, use the tap-to-select flow instead of drag-and-drop — tap a state chip first (it turns amber), then tap the target region or map area to place it.
+</Tip>
+
+## Game data sources
+
+| Game | Data source |
+|------|-------------|
+| State on Map | `src/data/states.json` — all state names |
+| Heritage Site Builder | `src/data/states.json` — monuments with images |
+| Guess the Dance Form | `src/data/states.json` — performing arts per state |
+| Historical Timeline | `src/data/timeline.json` — periods array |
+| State to Region | `src/constants/regions.ts` — REGION_TO_STATES mapping |
+| Monument & State | `src/data/states.json` — monuments per state |
+| Culture Trivia | `src/data/quiz.json` — questions bank |
+
+<CardGroup cols={2}>
+  <Card title="Playing the games" icon="gamepad" href="/guides/playing-games">
+    Detailed how-to guide for each of the 7 games
+  </Card>
+  <Card title="Content structure" icon="database" href="/guides/content-structure">
+    How the underlying data files are structured
+  </Card>
+</CardGroup>

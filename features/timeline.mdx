@@ -1,0 +1,83 @@
+---
+title: "Historical Timeline"
+description: "Scroll horizontally through India's history from the Prehistoric era to the Contemporary period — click any node to explore in depth."
+---
+
+The **Timeline** page (`/timeline`) presents India's history as an interactive horizontal scroll experience. Each historical era is a node on a continuous timeline line, and clicking any era expands it to reveal key events and highlights.
+
+## How the timeline works
+
+- **Horizontal scroll** — the timeline extends horizontally; scroll left/right to move through history
+- **Era nodes** — large white dots represent major historical periods
+- **Event nodes** — smaller dots represent specific events within an era (visible after expanding the era)
+- **Click to expand** — clicking an era node expands it inline to a wide detail panel
+- **Click again to collapse** — clicking the active item collapses it back to the timeline
+
+<Note>
+  On desktop, the expanded panel is 800px wide and shows a two-column layout with an image on the left and text on the right. On mobile, it stacks vertically.
+</Note>
+
+## Historical periods
+
+The timeline covers 7 major periods of Indian history sourced from NCERT curriculum:
+
+| Period | Years | Key themes |
+|--------|-------|------------|
+| **Pre-Historic** | Until 3000 BCE | Cave paintings, rock shelters, primitive tools, Bhimbetka |
+| **Proto-Historic** | 3000–600 BCE | Indus Valley Civilization, Harappa, Mohenjo-daro, Dholavira |
+| **Ancient** | 600 BCE–750 CE | Mauryas, Guptas, Buddhism, Jainism, Ashoka, Ajanta caves |
+| **Early Medieval** | 750–1550 CE | Ellora Caves, Qutub Minar, Rajput kingdoms, Chola empire |
+| **Medieval** | 1550–1750 CE | Mughal Empire, Basilica of Bom Jesus, Meenakshi Temple, Bundi miniatures |
+| **Modern** | 1750–1980 CE | British rule, independence movement, Victoria Memorial, India Gate |
+| **Contemporary** | 1980–Present | Lotus Temple, Manipuri Dance revival, post-independence culture |
+
+## Navigating the timeline
+
+<Steps>
+  <Step title="Open the Timeline page">
+    Navigate to `/timeline` from the main navigation bar.
+  </Step>
+  <Step title="Scroll horizontally">
+    Swipe left/right on mobile or use your mouse wheel / trackpad to scroll through the timeline. A styled amber scrollbar appears for mouse users.
+  </Step>
+  <Step title="Click an era node">
+    Click any large white circle (era node) to expand it. The node expands into a wide detail panel showing the era's image, years, title, and description. Sub-events also appear as smaller cards above or below the timeline line.
+  </Step>
+  <Step title="Explore sub-events">
+    Click any sub-event card (smaller nodes) within an expanded era to see its specific detail panel — including image, location, and description.
+  </Step>
+  <Step title="Collapse and move on">
+    Click the close button (×) in the top-right of the expanded panel to collapse it and continue scrolling.
+  </Step>
+</Steps>
+
+## Example highlights
+
+Each era has curated highlight events. For example:
+
+**Pre-Historic era highlights:**
+- Bhimbetka Rock Shelters (Madhya Pradesh) — UNESCO World Heritage site with prehistoric rock paintings dating back 30,000 years
+
+**Proto-Historic era highlights:**
+- Dholavira (Gujarat) — one of the five largest Harappan sites, known for its sophisticated water management system
+- Rakhigarhi (Haryana) — largest Indus Valley Civilization site in India
+
+**Ancient era highlights:**
+- Lion Capital of Ashoka (Sarnath, Uttar Pradesh) — the national emblem of India, originally placed atop an Ashoka pillar
+
+## Image handling
+
+Timeline images are served from the `public/time-line-images/` directory as `.webp` files. If a local image is unavailable, the `getTimelineFallbackImage()` utility provides a contextual placeholder.
+
+<Tip>
+  The timeline title header automatically collapses when you select an item — this gives the expanded panel maximum vertical space. It reappears when you close the item.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="Historical Timeline game" icon="gamepad" href="/features/games">
+    Test your knowledge by ordering these eras in the Timeline Order mini-game.
+  </Card>
+  <Card title="Cultural Glossary" icon="book" href="/features/glossary">
+    Look up historical terms from the timeline in the Cultural Glossary.
+  </Card>
+</CardGroup>

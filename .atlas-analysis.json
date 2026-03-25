@@ -1,0 +1,94 @@
+{
+  "projectType": "saas",
+  "projectName": "Virasat",
+  "projectDescription": "An interactive web platform for exploring India's cultural heritage — featuring a D3-powered state map, art forms gallery, historical timeline, 3D Hasta Mudra models, educational games, and a cultural glossary, all grounded in NCERT curriculum.",
+  "theme": "willow",
+  "primaryColor": "#f1d262",
+  "lightColor": "#7c6c34",
+  "darkColor": "#19160b",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Overview",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["introduction", "quickstart"]
+          },
+          {
+            "group": "Core Features",
+            "pages": [
+              "features/explore-map",
+              "features/art-forms",
+              "features/timeline",
+              "features/games",
+              "features/glossary"
+            ]
+          },
+          {
+            "group": "3D Mudra Models",
+            "pages": [
+              "mudras/overview",
+              "mudras/single-hand",
+              "mudras/two-hand"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Using the Platform",
+            "pages": [
+              "guides/navigating-the-map",
+              "guides/exploring-states",
+              "guides/art-gallery",
+              "guides/playing-games"
+            ]
+          },
+          {
+            "group": "Data & Content",
+            "pages": [
+              "guides/content-structure",
+              "guides/adding-state-data",
+              "guides/image-assets"
+            ]
+          },
+          {
+            "group": "Development",
+            "pages": [
+              "guides/local-setup",
+              "guides/tech-stack",
+              "guides/contributing"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Interactive D3-powered map of all Indian states and union territories with regional filtering",
+    "Cultural art forms gallery with masonry grid, category filters, and detailed overlays",
+    "Interactive historical timeline spanning Prehistoric to Modern India",
+    "3D interactive Hasta Mudra (hand gesture) models — 28 single-hand and 22 two-hand gestures",
+    "Educational mini-games: State-on-Map, Heritage Site Builder, Guess the Dance Form, Timeline Order, and Culture Trivia Quiz",
+    "Cultural glossary with A–Z navigation and alphabetical grouping",
+    "Classical dance forms section with Navrasas (expressions) and gesture details",
+    "Multi-region map navigation: North, South, East, West, Central, Northeast, Union Territories"
+  ],
+  "publicApiSurface": [
+    "/explore — Interactive India map with state/region navigation",
+    "/explore/:stateId — Deep-link to a specific state's cultural detail panel",
+    "/artforms — Cultural gallery: Paintings, Performing Arts, Handicrafts, Monuments, Festivals, Folk Dance",
+    "/timeline — Horizontal interactive timeline of Indian history periods and highlights",
+    "/games — Educational game arcade with 7 mini-games",
+    "/glossary — Cultural glossary with alphabetic navigation",
+    "/acknowledgement — Credits and sources page",
+    "src/data/states.json — Central data store for all state cultural content",
+    "src/data/timeline.json — Historical periods and highlights",
+    "src/data/games.json — Game definitions and metadata",
+    "src/data/glossary.json — Glossary terms and definitions",
+    "src/data/quiz.json — Culture trivia questions"
+  ]
+}
